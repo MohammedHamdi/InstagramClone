@@ -12,6 +12,7 @@ import Firebase
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var user: User?
+    var posts = [Post]()
     
     let cellId = "cellId"
     
@@ -25,9 +26,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         fetchUser()
         
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         
         setupLogOutButton()
+        
+//        fetchPosts()
+        fetchOrderedPosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -43,13 +47,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
         
-        cell.backgroundColor = .purple
+        cell.post = posts[indexPath.item]
         
         return cell
     }
@@ -110,6 +114,46 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertController, animated: true)
+    }
+    
+    fileprivate func fetchPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach { (key, value) in
+//                print("Key: \(key), Value: \(value)")
+                
+                guard let dictionary = value as? [String: Any] else { return }
+                
+                let post = Post(dictionary: dictionary)
+                self.posts.append(post)
+            }
+            
+            self.collectionView.reloadData()
+        }) { (error) in
+            print("failed to fetch posts: ", error)
+        }
+    }
+    
+    fileprivate func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        
+        //TODO:- Pagination implementation
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            let post = Post(dictionary: dictionary)
+            self.posts.append(post)
+            
+            self.collectionView.reloadData()
+        }) { (error) in
+            print("Failed to fetch ordered posts: ", error)
+        }
     }
 }
 
