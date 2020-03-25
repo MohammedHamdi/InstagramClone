@@ -20,6 +20,7 @@
 		6F78482C242A87EC00D3A02C /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78482B242A87EC00D3A02C /* CustomImageView.swift */; };
 		6F78482F242B8AE400D3A02C /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78482E242B8AE400D3A02C /* HomeController.swift */; };
 		6F784831242B8CA000D3A02C /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F784830242B8CA000D3A02C /* HomePostCell.swift */; };
+		6F784833242BBAE200D3A02C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F784832242BBAE200D3A02C /* User.swift */; };
 		6FD13781242243B900C855C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13780242243B900C855C5 /* AppDelegate.swift */; };
 		6FD13783242243B900C855C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13782242243B900C855C5 /* SceneDelegate.swift */; };
 		6FD13785242243B900C855C5 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13784242243B900C855C5 /* SignUpController.swift */; };
@@ -46,6 +47,7 @@
 		6F78482B242A87EC00D3A02C /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		6F78482E242B8AE400D3A02C /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		6F784830242B8CA000D3A02C /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		6F784832242BBAE200D3A02C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6FD1377D242243B900C855C5 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD13780242243B900C855C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD13782242243B900C855C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				6F784827242A7BE500D3A02C /* Post.swift */,
+				6F784832242BBAE200D3A02C /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				6FEEB7362426836900F90589 /* LoginController.swift in Sources */,
 				6FD13783242243B900C855C5 /* SceneDelegate.swift in Sources */,
 				6F78482F242B8AE400D3A02C /* HomeController.swift in Sources */,
+				6F784833242BBAE200D3A02C /* User.swift in Sources */,
 				6F78482A242A7E2100D3A02C /* UserProfilePhotoCell.swift in Sources */,
 				6FD1379624227C6D00C855C5 /* Extensions.swift in Sources */,
 				6F7848212427CAA800D3A02C /* PhotoSelectorCell.swift in Sources */,
