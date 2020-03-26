@@ -90,6 +90,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        setupToHideKeyboardOnTapOnView()
         
         view.addSubview(plusPhotoButton)
 
