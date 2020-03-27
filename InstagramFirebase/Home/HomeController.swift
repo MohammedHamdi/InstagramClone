@@ -24,6 +24,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupNavigationItems()
         
         fetchPosts()
+        
+//        Database.fetchUserWithUID(uid: "GlGnPazbvxVPEWkT1Hjc8wpHVGh1") { (user) in
+//            self.fetchPostsWithUser(user: user)
+//        }
+        
+        fetchFollowingUserIds()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,31 +62,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.fetchPostsWithUser(user: user)
         }
-//        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-//
-//            let user = User(dictionary: userDictionary)
-//
-//            let ref = Database.database().reference().child("posts").child(uid)
-//
-//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//                guard let dictionaries = snapshot.value as? [String: Any] else { return }
-//
-//                dictionaries.forEach { (key, value) in
-//                    guard let dictionary = value as? [String: Any] else { return }
-//
-//                    let post = Post(user: user, dictionary: dictionary)
-//                    self.posts.append(post)
-//                }
-//
-//                self.collectionView.reloadData()
-//            }) { (error) in
-//                print("Failed to fetch posts: ", error)
-//            }
-//        }) { (error) in
-//            print("Failed to fetch user for posts: ", error)
-//        }
     }
     
     fileprivate func fetchPostsWithUser(user: User) {
@@ -95,10 +76,29 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
             }
-
+            self.posts.sort { (p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+            }
+            
             self.collectionView.reloadData()
         }) { (error) in
             print("Failed to fetch posts: ", error)
+        }
+    }
+    
+    fileprivate func fetchFollowingUserIds() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+    
+            guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            
+            userIdsDictionary.forEach { (key, value) in
+                Database.fetchUserWithUID(uid: key) { (user) in
+                    self.fetchPostsWithUser(user: user)
+                }
+            }
+        }) { (error) in
+            print("Failed to fetch following user ids:", error)
         }
     }
 }
