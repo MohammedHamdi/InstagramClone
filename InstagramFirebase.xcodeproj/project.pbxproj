@@ -24,6 +24,7 @@
 		6F784836242CDA5200D3A02C /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F784835242CDA5200D3A02C /* UserSearchController.swift */; };
 		6F784838242CDDBD00D3A02C /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F784837242CDDBD00D3A02C /* UserSearchCell.swift */; };
 		6F78483A242D19B100D3A02C /* FirebaseUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F784839242D19B100D3A02C /* FirebaseUtilities.swift */; };
+		6F78483D242E79B900D3A02C /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78483C242E79B900D3A02C /* CameraController.swift */; };
 		6FD13781242243B900C855C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13780242243B900C855C5 /* AppDelegate.swift */; };
 		6FD13783242243B900C855C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13782242243B900C855C5 /* SceneDelegate.swift */; };
 		6FD13785242243B900C855C5 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD13784242243B900C855C5 /* SignUpController.swift */; };
@@ -54,6 +55,7 @@
 		6F784835242CDA5200D3A02C /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		6F784837242CDDBD00D3A02C /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		6F784839242D19B100D3A02C /* FirebaseUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtilities.swift; sourceTree = "<group>"; };
+		6F78483C242E79B900D3A02C /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		6FD1377D242243B900C855C5 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD13780242243B900C855C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD13782242243B900C855C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		6F78483B242E799D00D3A02C /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				6F78483C242E79B900D3A02C /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		6FD13774242243B900C855C5 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 				6FD13782242243B900C855C5 /* SceneDelegate.swift */,
 				6F029150242644920068D355 /* MainTabBarController.swift */,
 				6F78482D242B8AC800D3A02C /* Home */,
+				6F78483B242E799D00D3A02C /* Camera */,
 				6F784834242CDA2E00D3A02C /* Search */,
 				6F78481D2427A84D00D3A02C /* Add Photo */,
 				6F02915424264F850068D355 /* User Profile */,
@@ -326,6 +337,7 @@
 				6F02915624264FA30068D355 /* UserProfileHeader.swift in Sources */,
 				6FD13781242243B900C855C5 /* AppDelegate.swift in Sources */,
 				6F78481F2427A86E00D3A02C /* PhotoSelectorController.swift in Sources */,
+				6F78483D242E79B900D3A02C /* CameraController.swift in Sources */,
 				6F78482C242A87EC00D3A02C /* CustomImageView.swift in Sources */,
 				6F784836242CDA5200D3A02C /* UserSearchController.swift in Sources */,
 				6F784828242A7BE500D3A02C /* Post.swift in Sources */,
@@ -488,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXA9FH974Z;
 				INFOPLIST_FILE = InstagramFirebase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,7 +520,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXA9FH974Z;
 				INFOPLIST_FILE = InstagramFirebase/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
