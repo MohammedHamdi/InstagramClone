@@ -15,6 +15,8 @@
 		6F4685EF242FC0C0001F74B3 /* CustomAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4685EE242FC0C0001F74B3 /* CustomAnimationPresenter.swift */; };
 		6F4685F1242FC477001F74B3 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4685F0242FC477001F74B3 /* CustomAnimationDismisser.swift */; };
 		6F4685F32430D19F001F74B3 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4685F22430D19F001F74B3 /* CommentsController.swift */; };
+		6F4685F52430F61D001F74B3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4685F42430F61D001F74B3 /* CommentCell.swift */; };
+		6F4685F724310A2A001F74B3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4685F624310A29001F74B3 /* Comment.swift */; };
 		6F78481F2427A86E00D3A02C /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78481E2427A86E00D3A02C /* PhotoSelectorController.swift */; };
 		6F7848212427CAA800D3A02C /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7848202427CAA800D3A02C /* PhotoSelectorCell.swift */; };
 		6F7848232428DB3A00D3A02C /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7848222428DB3A00D3A02C /* PhotoSelectorHeader.swift */; };
@@ -50,6 +52,8 @@
 		6F4685EE242FC0C0001F74B3 /* CustomAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresenter.swift; sourceTree = "<group>"; };
 		6F4685F0242FC477001F74B3 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		6F4685F22430D19F001F74B3 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		6F4685F42430F61D001F74B3 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		6F4685F624310A29001F74B3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		6F78481E2427A86E00D3A02C /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		6F7848202427CAA800D3A02C /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		6F7848222428DB3A00D3A02C /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			children = (
 				6F784827242A7BE500D3A02C /* Post.swift */,
 				6F784832242BBAE200D3A02C /* User.swift */,
+				6F4685F624310A29001F74B3 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 				6F78482E242B8AE400D3A02C /* HomeController.swift */,
 				6F784830242B8CA000D3A02C /* HomePostCell.swift */,
 				6F4685F22430D19F001F74B3 /* CommentsController.swift */,
+				6F4685F42430F61D001F74B3 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				6F784838242CDDBD00D3A02C /* UserSearchCell.swift in Sources */,
 				6FD13785242243B900C855C5 /* SignUpController.swift in Sources */,
 				6F4685F1242FC477001F74B3 /* CustomAnimationDismisser.swift in Sources */,
+				6F4685F724310A2A001F74B3 /* Comment.swift in Sources */,
 				6F784831242B8CA000D3A02C /* HomePostCell.swift in Sources */,
 				6F02915624264FA30068D355 /* UserProfileHeader.swift in Sources */,
 				6F4685F32430D19F001F74B3 /* CommentsController.swift in Sources */,
@@ -339,6 +346,7 @@
 				6F784836242CDA5200D3A02C /* UserSearchController.swift in Sources */,
 				6F784828242A7BE500D3A02C /* Post.swift in Sources */,
 				6F029153242646030068D355 /* UserProfileController.swift in Sources */,
+				6F4685F52430F61D001F74B3 /* CommentCell.swift in Sources */,
 				6F029151242644920068D355 /* MainTabBarController.swift in Sources */,
 				6F784825242A54E400D3A02C /* SharePhotoController.swift in Sources */,
 				6F7848232428DB3A00D3A02C /* PhotoSelectorHeader.swift in Sources */,
