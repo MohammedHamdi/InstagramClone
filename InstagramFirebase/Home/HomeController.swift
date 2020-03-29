@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate  {
     
     var posts = [Post]()
     
@@ -45,6 +45,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         if indexPath.item < posts.count {
             cell.post = posts[indexPath.item]
+            cell.delegate = self
         }
         
         return cell
@@ -132,7 +133,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         fetchFollowingUserIds()
     }
     
-//    @objc func handleUpdateFeed() {
-//        handleRefresh()
-//    }
+    func didTapComment(post: Post) {
+        print("Message coming from HomeController")
+        print(post.caption)
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentsController, animated: true)
+    }
 }
