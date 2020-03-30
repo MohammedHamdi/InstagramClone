@@ -67,7 +67,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc func handleCamera() {
-        print("Showing camera")
         
         let cameraController = CameraController()
         cameraController.modalPresentationStyle = .fullScreen
@@ -96,13 +95,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
                 
-                self.posts.append(post)
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    } else {
+                        post.hasLiked = false
+                    }
+                    
+                    self.posts.append(post)
+                    
+                    self.posts.sort { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    }
+                    
+                    self.collectionView.reloadData()
+                    
+                }) { (error) in
+                    print("Failed to fetch like info for post:", error)
+                }
             }
-            self.posts.sort { (p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-            }
-            
-            self.collectionView.reloadData()
         }) { (error) in
             print("Failed to fetch posts: ", error)
         }
@@ -125,7 +138,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc func handleRefresh() {
-        print("Handling refresh....")
+        
         posts.removeAll()
         fetchAllPosts()
     }
@@ -136,10 +149,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func didTapComment(post: Post) {
-        print("Message coming from HomeController")
-        print(post.caption)
+        
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
+    func didLike(for cell: HomePostCell) {
+        guard let indexpath = collectionView.indexPath(for: cell) else { return }
+        
+        var post = self.posts[indexpath.item]
+        
+        guard let postId = post.id else { return }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let values = [uid: post.hasLiked == true ? 0 : 1]
+        Database.database().reference().child("likes").child(postId).updateChildValues(values) { (error, _) in
+            
+            if let error = error {
+                print("Failed to like post:", error)
+                return
+            }
+            
+            post.hasLiked = !post.hasLiked
+            self.posts[indexpath.item] = post
+            self.collectionView.reloadItems(at: [indexpath])
+        }
     }
 }
