@@ -9,13 +9,16 @@
 import UIKit
 import Firebase
 
-class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UserProfileHeaderDelegate {
     
     var userId: String?
     var user: User?
     var posts = [Post]()
+
+    var isGridView = true
     
     let cellId = "cellId"
+    let homePostCellId = "homePostCellId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +27,17 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: homePostCellId)
         
         setupLogOutButton()
         fetchUser()
-//        fetchOrderedPosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! UserProfileHeader
         
         header.user = self.user
+        header.delegate = self
         
         return header
     }
@@ -47,16 +51,29 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
-        
-        cell.post = posts[indexPath.item]
-        
-        return cell
+        if isGridView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+            cell.post = posts[indexPath.item]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homePostCellId, for: indexPath) as! HomePostCell
+            cell.post = posts[indexPath.item]
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return .init(width: width, height: width)
+        if isGridView {
+            let width = (view.frame.width - 2) / 3
+            return .init(width: width, height: width)
+        } else {
+            var height: CGFloat = 40 + 8 + 8 //username + userprofileImageView
+            height += view.frame.width
+            height += 50
+            height += 60
+            
+            return .init(width: view.frame.width, height: height)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -66,27 +83,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-    
-//    fileprivate func fetchUser() {
-//        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
-////        guard let uid = Auth.auth().currentUser?.uid else { return }
-//
-//        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//            print(snapshot.value ?? "")
-//
-//            guard let dictionary = snapshot.value as? [String: Any] else { return }
-//
-//            self.user = User(dictionary: dictionary)
-//
-//            self.navigationItem.title = self.user?.username
-//
-//            self.collectionView?.reloadData()
-//
-//            self.fetchOrderedPosts()
-//        }) { (error) in
-//            print("Failed to fetch user: ", error)
-//        }
-//    }
     
     fileprivate func setupLogOutButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
@@ -143,6 +139,20 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             self.collectionView.reloadData()
         }) { (error) in
             print("Failed to fetch ordered posts: ", error)
+        }
+    }
+    
+    func didChangeToGridView() {
+        if !isGridView {
+            isGridView = true
+            collectionView.reloadData()
+        }
+    }
+    
+    func didChangeToListView() {
+        if isGridView {
+            isGridView = false
+            collectionView.reloadData()
         }
     }
 }
