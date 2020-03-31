@@ -53,7 +53,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.item == self.posts.count - 1 && !isFinishedPaging {
-            print("Paginating for posts")
+            
             paginatePosts()
         }
         
@@ -131,7 +131,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     var isFinishedPaging = false
     
     fileprivate func paginatePosts() {
-        print("Start paging for more posts")
         
         guard let uid = self.user?.uid else { return }
         let ref = Database.database().reference().child("posts").child(uid)
@@ -170,9 +169,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 
             })
             
-            self.posts.forEach { (post) in
-                print(post.id ?? "")
-            }
+//            self.posts.forEach { (post) in
+//                print(post.id ?? "")
+//            }
             
             self.collectionView.reloadData()
         }) { (error) in
