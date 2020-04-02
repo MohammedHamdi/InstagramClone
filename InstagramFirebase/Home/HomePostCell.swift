@@ -97,7 +97,6 @@ class HomePostCell: UICollectionViewCell {
     }()
     
     @objc func handleComment() {
-        print("Trying to show comments...")
         guard let post = post else { return }
         
         delegate?.didTapComment(post: post)

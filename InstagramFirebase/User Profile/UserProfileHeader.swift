@@ -52,8 +52,6 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     @objc func handleEditProfileOrFollow() {
-        print("Edit profile or follow logic")
-        
         guard let currentLoggedInUserId = Auth.auth().currentUser?.uid else { return }
         guard let userId = user?.uid else { return }
         
