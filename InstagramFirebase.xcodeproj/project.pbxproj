@@ -72,7 +72,7 @@
 		6F78483C242E79B900D3A02C /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		6FB6A85524339E430083904F /* CommentInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccessoryView.swift; sourceTree = "<group>"; };
 		6FB6A8572433B4A50083904F /* CommentInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputTextView.swift; sourceTree = "<group>"; };
-		6FD1377D242243B900C855C5 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD1377D242243B900C855C5 /* Instagram Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD13780242243B900C855C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD13782242243B900C855C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6FD13784242243B900C855C5 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		6FD1377E242243B900C855C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FD1377D242243B900C855C5 /* InstagramFirebase.app */,
+				6FD1377D242243B900C855C5 /* Instagram Clone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,10 +192,9 @@
 		6FD1377F242243B900C855C5 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				6FDAF9282435EDA100D61182 /* App Delegate */,
 				6F784826242A7BD300D3A02C /* Models */,
 				6FD1379424227C4D00C855C5 /* Utilities */,
-				6FD13780242243B900C855C5 /* AppDelegate.swift */,
-				6FD13782242243B900C855C5 /* SceneDelegate.swift */,
 				6F029150242644920068D355 /* MainTabBarController.swift */,
 				6F78482D242B8AC800D3A02C /* Home */,
 				6F78483B242E799D00D3A02C /* Camera */,
@@ -220,6 +219,15 @@
 				6F784839242D19B100D3A02C /* FirebaseUtilities.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		6FDAF9282435EDA100D61182 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6FD13780242243B900C855C5 /* AppDelegate.swift */,
+				6FD13782242243B900C855C5 /* SceneDelegate.swift */,
+			);
+			path = "App Delegate";
 			sourceTree = "<group>";
 		};
 		6FEEB7342426835500F90589 /* Login */ = {
@@ -257,7 +265,7 @@
 			);
 			name = InstagramFirebase;
 			productName = InstagramFirebase;
-			productReference = 6FD1377D242243B900C855C5 /* InstagramFirebase.app */;
+			productReference = 6FD1377D242243B900C855C5 /* Instagram Clone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -520,7 +528,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MHAH.InstagramFirebase;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Instagram Clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -540,7 +548,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MHAH.InstagramFirebase;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Instagram Clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
