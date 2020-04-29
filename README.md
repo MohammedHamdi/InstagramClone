@@ -13,7 +13,7 @@ An iOS app that clones some of instagram's core features using firebase as backe
 
 #
 ### Home Feed
-#### The data is handled by firebase real-time data base.
+#### The data is handled by firebase real-time database.
 
 <p align="center"><img src="https://raw.githubusercontent.com/MohammedHamdi/InstagramClone/master/Screenshots/HomeView.png" alt="HomeView" width="250" height="541">   <img src="https://raw.githubusercontent.com/MohammedHamdi/InstagramClone/master/Screenshots/LikeAndComment.gif" alt="LikeAndCommentGIF" width="250" height="541"></p>
 
